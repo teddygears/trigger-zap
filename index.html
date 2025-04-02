@@ -1,0 +1,5 @@
+<a href='javascript:fetch("YOUR_WEBHOOK_URL", { 
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ date: new Date().toISOString().split("T")[0] })
+}).then(() => window.close());'>Trigger Zap with Today's Date</a>
