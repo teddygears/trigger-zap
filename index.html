@@ -9,22 +9,17 @@
 
   <script>
     document.getElementById("trigger-btn").addEventListener("click", function() {
-      // Log the click event for debugging
       console.log("Button clicked. Triggering fetch request...");
-
+      
       fetch("https://hooks.zapier.com/hooks/catch/14217713/2evwite/", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        mode: "no-cors",  // This bypasses the CORS preflight.
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ date: new Date().toISOString().split("T")[0] })
       })
-      .then(response => response.text())
-      .then(text => {
-        console.log("Fetch successful. Response text:", text);
-        alert("Zap triggered successfully! Response: " + text);
-        // Optionally close the window, but note that some browsers may block this
-        // window.close();
+      .then(() => {
+        // Note: In no-cors mode, the response is opaque.
+        alert("Zap triggered. (Response is opaque in no-cors mode.)");
       })
       .catch(error => {
         console.error("Error during fetch:", error);
